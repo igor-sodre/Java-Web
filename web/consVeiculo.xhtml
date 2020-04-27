@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <h1>Pesquisar Veiculo</h1>
+            <h:panelGrid>
+            <h:commandButton value="Novo" action="codveiculo"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                Veiculo <h:inputText size="20" value="#{veiculoMbean.parametroPesquisa}"/>
+                <h:commandButton value="Pesquisar" action="#{veiculoMbean.botaopesquisar()}" />
+            </h:panelGrid>
+            <h:panelGrid>
+                <h:dataTable value="#{veiculoMBem.listaVeiculo}" var="veiculo"
+                             styleClass="table" 
+                             headerClass="tableHeader"
+                             rowClasses="tableOddRow, tableEvenRow">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{veiculo.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Veiculo</f:facet>
+                        #{veiculo.nome}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Valor</f:facet>
+                        #{veiculo.Valor}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ações</f:facet>
+                        <h.commandButton value="Editar"/>
+                        <h.commandButton value="Apagar"/>
+                    </h:column> 
+                </h:dataTable>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

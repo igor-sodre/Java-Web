@@ -6,20 +6,24 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>App Java Web</title>
+        <h:outputStylesheet name="/css/default.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <title>Auto Car Locadora </title>
     </h:head>
 
     <h:body>
 
 
         <div id="top" class="top">
-            <ui:insert name="top">Top</ui:insert>
+            <ui:insert name="top">
+                Auto Car
+            </ui:insert>
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <ui:insert name="left">
+                    <ui:include src="menu.xhtml"/>
+                </ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
