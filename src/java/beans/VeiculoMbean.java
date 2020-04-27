@@ -5,7 +5,10 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import uteis.UnidadeMedida;
 
 /**
  *
@@ -17,15 +20,29 @@ public class VeiculoMbean implements Serializable {
 
     private Veiculo veiculo; 
     private String parametroPesquisa;
+    private List<Veiculo> listaVeiculos;
+    private List<UnidadeMedida> listaUnidadeMedida;   
     
-    private List ListaVeiculos = new ArrayList<>();
     
     public VeiculoMbean() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        veiculo = new Veiculo();
+        listaVeiculos = new ArrayList<>();
+        listaUnidadeMedida = Arrays.asList(UnidadeMedida.values());
     }
     
     public void botaopesquisar(){
     
         
+    }
+    
+    public String botaoSalvar(){
+        listaVeiculos.add(veiculo);
+        veiculo = new Veiculo();
+        return "consVeiculo?faces-redirect=true";     
     }
 
     public Veiculo getVeiculo() {
@@ -35,6 +52,11 @@ public class VeiculoMbean implements Serializable {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
+    
+    
+    
+    
+  
 
     
     
@@ -47,13 +69,22 @@ public class VeiculoMbean implements Serializable {
     }
 
     public List getListaVeiculos() {
-        return ListaVeiculos;
+        return listaVeiculos;
     }
 
-    public void setListaVeiculos(List ListaVeiculos) {
-        this.ListaVeiculos = ListaVeiculos;
+
+    public void setListaVeiculos(List listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
     }
-    
+
+    public List<UnidadeMedida> getListaUnidadeMedida() {
+        return listaUnidadeMedida;
+    }
+
+    public void setListaUnidadeMedida(List<UnidadeMedida> listaUnidadeMedida) {
+        this.listaUnidadeMedida = listaUnidadeMedida;
+    }
+      
     
     
 }

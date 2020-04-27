@@ -1,16 +1,19 @@
 package entidade;
 
+
+import uteis.UnidadeMedida;
+
 /**
  *
  * @author Igor Sodré
  */
 public class Veiculo {
-    
+   
     private Long id;
-    private String veiculo;
-    private String Estado;
-    private String Valor;
+    private String Veiculo;
+    private UnidadeMedida unidadeMedida;
     private String Ano;
+    private String Valor;
     private String Marca;
 
     public Long getId() {
@@ -22,27 +25,19 @@ public class Veiculo {
     }
 
     public String getVeiculo() {
-        return veiculo;
+        return Veiculo;
     }
 
-    public void setVeiculo(String veiculo) {
-        this.veiculo = veiculo;
+    public void setVeiculo(String Veiculo) {
+        this.Veiculo = Veiculo;
     }
 
-    public String getEstado() {
-        return Estado;
+    public UnidadeMedida getUnidadeMedida() {
+        return unidadeMedida;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
-    }
-
-    public String getValor() {
-        return Valor;
-    }
-
-    public void setValor(String Valor) {
-        this.Valor = Valor;
+    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
 
     public String getAno() {
@@ -53,6 +48,14 @@ public class Veiculo {
         this.Ano = Ano;
     }
 
+    public String getValor() {
+        return Valor;
+    }
+
+    public void setValor(String Valor) {
+        this.Valor = Valor;
+    }
+
     public String getMarca() {
         return Marca;
     }
@@ -60,6 +63,7 @@ public class Veiculo {
     public void setMarca(String Marca) {
         this.Marca = Marca;
     }
-    
-    
+
+ 
+
 }

@@ -12,11 +12,8 @@
         Veiculo
         <h:inputText id="iTxtVeiculo" size="50" value="#{veiculoMbean.veiculo.veiculo}" />
         Estado
-        <h:selectOneMenu>
-            <f:selectItem itemValue="GO" itemLabel="GO"/>
-            <f:selectItem itemValue="MT" itemLabel="MT"/>
-            <f:selectItem itemValue="SP" itemLabel="SP"/>
-            <f:selectItem itemValue="RJ" itemLabel="RJ"/>
+        <h:selectOneMenu id="sMnUnidadeMedida" value="#{veiculoMbean.veiculo.unidadeMedida}">
+            <f:selectItems value="#{veiculoMbean.listaUnidadeMedida}" var="unidadeMedida" itemValue="#{unidadeMedida.unidadeMedida}" itemLabel="#{unidadeMedida.unidadeMedida}"/>
         </h:selectOneMenu> 
         Valor
         <h:inputText id="iTxtValor" size="10" value="#{veiculoMbean.veiculo.valor}"/>
@@ -25,7 +22,7 @@
         Marca
         <h:inputText id="iTxtMarca" size="10" value="#{veiculoMbean.veiculo.marca}"/>
         </h:panelGrid>
-            <h:commandButton value="Salvar"/>
+            <h:commandButton value="Salvar" action="#{veiculoMbean.botaoSalvar()}"/>
         
         </h:form>
     </ui:define>

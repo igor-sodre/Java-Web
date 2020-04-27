@@ -13,10 +13,10 @@
             </h:panelGrid>
             <h:panelGrid columns="3">
                 Veiculo <h:inputText size="20" value="#{veiculoMbean.parametroPesquisa}"/>
-                <h:commandButton value="Pesquisar" action="#{veiculoMbean.botaopesquisar()}" />
+                <h:commandButton value="Pesquisar" action="#{veiculoMbean.botaopesquisar()}"/>
             </h:panelGrid>
             <h:panelGrid>
-                <h:dataTable value="#{veiculoMBem.listaVeiculo}" var="veiculo"
+                <h:dataTable value="#{veiculoMbean.listaVeiculos}" var="veiculo"
                              styleClass="table" 
                              headerClass="tableHeader"
                              rowClasses="tableOddRow, tableEvenRow">
@@ -26,11 +26,15 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Veiculo</f:facet>
-                        #{veiculo.nome}
+                        #{veiculo.Veiculo}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Valor</f:facet>
                         #{veiculo.Valor}
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Marca</f:facet>
+                        #{veiculo.Marca}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Ações</f:facet>
