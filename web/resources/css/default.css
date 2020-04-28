@@ -27,3 +27,46 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+.tabela{
+    border: 1px solid highlight;
+}
+
+.cabesario{
+    text-align: center;
+    font: 14px Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: black;
+}
+
+.tabelacolunas{
+    text-align: center;
+    width: 50px;
+}
+
+.tabela150px{
+    width: 150px;
+}
+
+.tabela250px{
+    width: 250px;
+}
+
+.tabelaacoes{
+    text-align: center;
+    width: 150px;
+}
+
+.tabelanumerica{
+    text-align: right;
+    width: 150px;
+}
+
+.tabelalinha1{
+    background-color: whitesmoke;
+}
+
+.tabelalinha2{
+    background-color: activecaption;
+}

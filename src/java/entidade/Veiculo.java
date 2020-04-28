@@ -10,11 +10,11 @@ import uteis.UnidadeMedida;
 public class Veiculo {
    
     private Long id;
-    private String Veiculo;
+    private String veiculo;
     private UnidadeMedida unidadeMedida;
     private String Ano;
-    private String Valor;
-    private String Marca;
+    private String valor;
+    private String marca;
 
     public Long getId() {
         return id;
@@ -25,11 +25,11 @@ public class Veiculo {
     }
 
     public String getVeiculo() {
-        return Veiculo;
+        return veiculo;
     }
 
-    public void setVeiculo(String Veiculo) {
-        this.Veiculo = Veiculo;
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
     }
 
     public UnidadeMedida getUnidadeMedida() {
@@ -49,20 +49,21 @@ public class Veiculo {
     }
 
     public String getValor() {
-        return Valor;
+        return valor;
     }
 
     public void setValor(String Valor) {
-        this.Valor = Valor;
+        this.valor = Valor;
     }
 
     public String getMarca() {
-        return Marca;
+        return marca;
     }
 
     public void setMarca(String Marca) {
-        this.Marca = Marca;
+        this.marca = Marca;
     }
+
 
  
 
