@@ -9,25 +9,22 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import uteis.UnidadeMedida;
 
 /**
  *
  * @author Igor Sodré
  */
 @Entity
-@Table(name = "Cliente", schema = "autocar")
+@Table(name = "cliente", schema = "autocar")
 @NamedQueries({
     @NamedQuery(
-            name = "cliente.findByNome",
+            name = "Cliente.findByNome",
             query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome"
     )
 })
@@ -37,10 +34,7 @@ public class Cliente implements Serializable {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", length = 200, nullable = false)
-    private String Nome;
-    @Column (name = "unidade_medida", length = 2)
-    @Enumerated (EnumType.STRING)
-    private UnidadeMedida unidadeMedida;
+    private String nome;
     @Column(name = "telefone", length = 11)
     private String Telefone;
     @Column(name = "email", length = 30)
@@ -57,20 +51,17 @@ public class Cliente implements Serializable {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public UnidadeMedida getUnidadeMedida() {
-        return unidadeMedida;
-    }
+    
+    
 
-    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
+   
 
     public String getTelefone() {
         return Telefone;

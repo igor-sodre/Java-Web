@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./Template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -9,11 +10,11 @@
         <h:form>
             <h1>Pesquisar Veiculo</h1>
             <h:panelGrid>
-            <h:commandButton value="Novo" action="codveiculo"/>
+                <h:commandButton value="Novo" action="#{veiculoMbean.botaoNovo()}"/>
             </h:panelGrid>
             <h:panelGrid columns="3">
                 Veiculo <h:inputText size="20" value="#{veiculoMbean.parametroPesquisa}"/>
-                <h:commandButton value="Pesquisar" action="#{veiculoMbean.botaopesquisar()}"/>
+                <h:commandButton value="Pesquisar" action="#{veiculoMbean.botaoPesquisar()}"/>
             </h:panelGrid>
             <h:panelGrid>
                 <h:dataTable value="#{veiculoMbean.listaVeiculos}" var="veiculo"
@@ -23,26 +24,29 @@
                              rowClasses="tabelalinha1, tabelalinha2">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
-                        #{veiculo.id}
+                            #{veiculo.id}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Veiculo</f:facet>
-                        #{veiculo.veiculo}
+                        <f:facet name="header">Nome Veiculo</f:facet>
+                            #{veiculo.nome}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Valor</f:facet>
-                        #{veiculo.valor}
+                            #{veiculo.valor}
                     </h:column>
-                     <h:column>
+                    <h:column>
                         <f:facet name="header">Marca</f:facet>
-                        #{veiculo.marca}
+                            #{veiculo.marca}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Ações</f:facet>
-                        <h:commandButton value="Editar" action="#{veiculoMbean.botaoEditar()}"/>
-                                         <f:setPropertyActionListener  value="#{veiculo}" target="#{veiculoMbean.veiculo}" />
-                                         <h:commandButton value="Apagar" action="#{veiculoMbean.botaoExcluir}()"/>
+                        <h:commandButton value="Editar" action="#{veiculoMbean.botaoEditar()}">
                         <f:setPropertyActionListener  value="#{veiculo}" target="#{veiculoMbean.veiculo}" />
+                        </h:commandButton>
+                        
+                        <h:commandButton value="Apagar" action="#{veiculoMbean.botaoExcluir()}">
+                        <f:setPropertyActionListener  value="#{veiculo}" target="#{veiculoMbean.veiculo}" />
+                        </h:commandButton>
                     </h:column> 
                 </h:dataTable>
             </h:panelGrid>

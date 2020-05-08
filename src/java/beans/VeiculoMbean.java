@@ -20,17 +20,14 @@ import uteis.UnidadeMedida;
 @SessionScoped
 public class VeiculoMbean implements Serializable {
 
-    private static void excluir(Veiculo veiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     private Veiculo veiculo; 
     private String parametroPesquisa;
     private List<Veiculo> listaVeiculos;
-    private List<UnidadeMedida> listaUnidadeMedida;   
+       
     
      @EJB
-    private VeiculoSBean veiculoSBeanSBem; 
+    private VeiculoSBean veiculoSBean; 
     
     
     public VeiculoMbean() {
@@ -40,27 +37,32 @@ public class VeiculoMbean implements Serializable {
     public void init(){
         veiculo = new Veiculo();
         listaVeiculos = new ArrayList<>();
-        listaUnidadeMedida = Arrays.asList(UnidadeMedida.values());
+      
     }
     
-    public void botaopesquisar(){
-       
-      
-            listaVeiculos = VeiculoSBean.pesquisar();
+    public void botaoPesquisar(){
+             
+            listaVeiculos = veiculoSBean.pesquisar(this.parametroPesquisa);
     
         
     }
     
       public void botaoExcluir() {
-        VeiculoMbean.excluir(veiculo);
+        this.veiculoSBean.excluir(this.veiculo);
+        this.listaVeiculos.remove(this.veiculo);
     }
     
     public String botaoEditar() {
         return "cadVeiculo?faces-redirect=true";
     }
     
+     public String botaoNovo() {
+        veiculo =  new Veiculo();
+         return "cadVeiculo?faces-redirect=true";
+    }
+    
     public String botaoSalvar(){
-        listaVeiculos.add(veiculo);
+        veiculoSBean.salvar(veiculo);
         veiculo = new Veiculo();
         return "consVeiculo?faces-redirect=true";     
     }
@@ -72,13 +74,6 @@ public class VeiculoMbean implements Serializable {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-    
-    
-    
-    
-  
-
-    
     
     public String getParametroPesquisa() {
         return parametroPesquisa;
@@ -97,22 +92,9 @@ public class VeiculoMbean implements Serializable {
         this.listaVeiculos = listaVeiculos;
     }
 
-    public List<UnidadeMedida> getListaUnidadeMedida() {
-        return listaUnidadeMedida;
-    }
+ 
 
-    public void setListaUnidadeMedida(List<UnidadeMedida> listaUnidadeMedida) {
-        this.listaUnidadeMedida = listaUnidadeMedida;
-    }
-
-    public VeiculoSBean getVeiculoSBeanSBem() {
-        return veiculoSBeanSBem;
-    }
-
-    public void setVeiculoSBeanSBem(VeiculoSBean veiculoSBeanSBem) {
-        this.veiculoSBeanSBem = veiculoSBeanSBem;
-    }
-      
+  
     
     
 }

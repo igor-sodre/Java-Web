@@ -21,7 +21,7 @@ import uteis.UnidadeMedida;
 public class ClienteMbean implements Serializable {
     
     private Cliente cliente;
-    private String pesquisacliente;
+    private String valorPesquisar;
     private List<Cliente> listaClientes;
     private List<UnidadeMedida> listaUnidadeMedida;
 
@@ -35,20 +35,25 @@ public class ClienteMbean implements Serializable {
     public void init (){
         cliente = new Cliente();
         listaClientes = new ArrayList<>();
-        listaUnidadeMedida = Arrays.asList(UnidadeMedida.values());
-        
+          
     
     }
     
     
-    public void botaopesquisar(){
-       listaClientes = clienteSBem.pesquisar(pesquisacliente);
+    public void botaoPesquisar(){
+       listaClientes = clienteSBem.pesquisar(valorPesquisar);
     }
     
       public void botaoExcluir() {
         clienteSBem.excluir(cliente);
+        listaClientes.remove(this.cliente);
     }
     
+      public String botaoNovo() {
+          this.cliente = new Cliente();
+        return "cadCliente?faces-redirect=true";
+    }
+      
     public String botaoEditar() {
         return "cadCliente?faces-redirect=true";
     }
@@ -56,16 +61,18 @@ public class ClienteMbean implements Serializable {
     public String botaoSalvar(){
        clienteSBem.salvar(cliente);
        cliente = new Cliente();
-       return "consCriente?faces-redirect=true";
+       return "consCliente?faces-redirect=true";
     }
 
-    public String getPesquisacliente() {
-        return pesquisacliente;
+    public String getValorPesquisar() {
+        return valorPesquisar;
     }
 
-    public void setPesquisacliente(String pesquisacliente) {
-        this.pesquisacliente = pesquisacliente;
+    public void setValorPesquisar(String valorPesquisar) {
+        this.valorPesquisar = valorPesquisar;
     }
+
+   
 
     public Cliente getCliente() {
         return cliente;

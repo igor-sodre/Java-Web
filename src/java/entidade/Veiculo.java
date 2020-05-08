@@ -5,22 +5,19 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import uteis.UnidadeMedida;
 
 /**
  *
  * @author Igor Sodré
  */
 @Entity
-@Table(name = "Veiculo", schema = "autocar")
+@Table(name = "veiculo", schema = "autocar")
 @NamedQueries({
     @NamedQuery(
             name = "Veiculo.findByNome",
@@ -32,15 +29,12 @@ public class Veiculo implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "veiculo", length = 50, nullable = false)
-    private String veiculo;
-    @Column (name = "unidade_medida", length = 2)
-    @Enumerated (EnumType.STRING)
-    private UnidadeMedida unidadeMedida;
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
     @Column(name = "ano", length = 4)
-    private String Ano;
-    @Column(name = "valor", length = 200)
-    private String valor;
+    private String ano;
+    @Column(name = "valor")
+    private Double valor;
     @Column(name = "marca", length = 50)
     private String marca;
 
@@ -52,45 +46,39 @@ public class Veiculo implements Serializable{
         this.id = id;
     }
 
-    public String getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(String veiculo) {
-        this.veiculo = veiculo;
-    }
-
-    public UnidadeMedida getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
-
     public String getAno() {
-        return Ano;
+        return ano;
     }
 
-    public void setAno(String Ano) {
-        this.Ano = Ano;
+    public void setAno(String ano) {
+        this.ano = ano;
     }
 
-    public String getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(String Valor) {
-        this.valor = Valor;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public void setMarca(String Marca) {
-        this.marca = Marca;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    
 
     @Override
     public int hashCode() {
@@ -117,9 +105,7 @@ public class Veiculo implements Serializable{
         return true;
     }
 
-    public String getNome() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
 
  
