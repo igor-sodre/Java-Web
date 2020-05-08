@@ -28,7 +28,7 @@ import uteis.UnidadeMedida;
 @NamedQueries({
     @NamedQuery(
             name = "cliente.findByNome",
-            query = "SELECT c FROM Produto c WHERE c.nome LIKE :nome"
+            query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome"
     )
 })
 public class Cliente implements Serializable {
