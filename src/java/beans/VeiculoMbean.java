@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import sessionbean.VeiculoSBean;
 import uteis.UnidadeMedida;
 
 /**
@@ -22,6 +24,9 @@ public class VeiculoMbean implements Serializable {
     private String parametroPesquisa;
     private List<Veiculo> listaVeiculos;
     private List<UnidadeMedida> listaUnidadeMedida;   
+    
+     @EJB
+    private VeiculoSBean veiculoSBeanSBem; 
     
     
     public VeiculoMbean() {
@@ -83,6 +88,14 @@ public class VeiculoMbean implements Serializable {
 
     public void setListaUnidadeMedida(List<UnidadeMedida> listaUnidadeMedida) {
         this.listaUnidadeMedida = listaUnidadeMedida;
+    }
+
+    public VeiculoSBean getVeiculoSBeanSBem() {
+        return veiculoSBeanSBem;
+    }
+
+    public void setVeiculoSBeanSBem(VeiculoSBean veiculoSBeanSBem) {
+        this.veiculoSBeanSBem = veiculoSBeanSBem;
     }
       
     

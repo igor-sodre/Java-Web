@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import sessionbean.ClienteSBean;
 import uteis.UnidadeMedida;
 
 /**
@@ -23,8 +25,8 @@ public class ClienteMbean implements Serializable {
     private List<Cliente> listaClientes;
     private List<UnidadeMedida> listaUnidadeMedida;
 
-    
-   
+    @EJB
+    private ClienteSBean clienteSBem; 
     
     public ClienteMbean() {
         
@@ -40,10 +42,11 @@ public class ClienteMbean implements Serializable {
     
     
     public void botaopesquisar(){
+       listaClientes = clienteSBem.pesquisar(pesquisacliente);
     }
     
     public String botaoSalvar(){
-       listaClientes.add(cliente);
+       clienteSBem.salvar(cliente);
        cliente = new Cliente();
        return "consCriente?faces-redirect=true";
     }

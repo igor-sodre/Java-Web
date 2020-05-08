@@ -5,19 +5,47 @@
  */
 package entidade;
 
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import uteis.UnidadeMedida;
 
 /**
  *
  * @author Igor Sodré
  */
-public class Cliente {
+@Entity
+@Table(name = "Cliente", schema = "autocar")
+@NamedQueries({
+    @NamedQuery(
+            name = "cliente.findByNome",
+            query = "SELECT c FROM Produto c WHERE c.nome LIKE :nome"
+    )
+})
+public class Cliente implements Serializable {
     
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nome", length = 200, nullable = false)
     private String Nome;
+    @Column (name = "unidade_medida", length = 2)
+    @Enumerated (EnumType.STRING)
     private UnidadeMedida unidadeMedida;
+    @Column(name = "telefone", length = 11)
     private String Telefone;
+    @Column(name = "email", length = 30)
     private String Email;
+    @Column(name = "cpf", length = 11)
     private String CPF;
 
     public Long getId() {
@@ -66,6 +94,31 @@ public class Cliente {
 
     public void setCPF(String CPF) {
         this.CPF = CPF;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
     
     
