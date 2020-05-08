@@ -20,6 +20,10 @@ import uteis.UnidadeMedida;
 @SessionScoped
 public class VeiculoMbean implements Serializable {
 
+    private static void excluir(Veiculo veiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private Veiculo veiculo; 
     private String parametroPesquisa;
     private List<Veiculo> listaVeiculos;
@@ -40,8 +44,19 @@ public class VeiculoMbean implements Serializable {
     }
     
     public void botaopesquisar(){
+       
+      
+            listaVeiculos = VeiculoSBean.pesquisar();
     
         
+    }
+    
+      public void botaoExcluir() {
+        VeiculoMbean.excluir(veiculo);
+    }
+    
+    public String botaoEditar() {
+        return "cadVeiculo?faces-redirect=true";
     }
     
     public String botaoSalvar(){

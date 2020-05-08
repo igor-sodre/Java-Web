@@ -20,6 +20,10 @@ import javax.persistence.Query;
 @Stateless
 public class VeiculoSBean {
 
+    public static List<Veiculo> pesquisar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @PersistenceContext(unitName = "Java-WebPU")
    private EntityManager em;
     

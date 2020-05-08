@@ -43,8 +43,10 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Ações</f:facet>
-                        <h:commandButton value="Editar"/>
-                        <h:commandButton value="Apagar"/>
+                        <h:commandButton value="Editar" action="#{clienteMbean.botaoEditar()}"/>
+                        <f:setPropertyActionListener  value="#{cliente}" target="#{clienteMbean.cliente}" />
+                        <h:commandButton value="Apagar" action="#{clienteMbean.botaoExcluir()}"/>
+                        <f:setPropertyActionListener  value="#{cliente}" target="#{clienteMbean.cliente}" />
                     </h:column> 
                 </h:dataTable>
             </h:panelGrid>

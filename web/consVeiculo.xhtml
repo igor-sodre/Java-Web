@@ -39,8 +39,10 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Ações</f:facet>
-                        <h:commandButton value="Editar"/>
-                        <h:commandButton value="Apagar"/>
+                        <h:commandButton value="Editar" action="#{veiculoMbean.botaoEditar()}"/>
+                                         <f:setPropertyActionListener  value="#{veiculo}" target="#{veiculoMbean.veiculo}" />
+                                         <h:commandButton value="Apagar" action="#{veiculoMbean.botaoExcluir}()"/>
+                        <f:setPropertyActionListener  value="#{veiculo}" target="#{veiculoMbean.veiculo}" />
                     </h:column> 
                 </h:dataTable>
             </h:panelGrid>

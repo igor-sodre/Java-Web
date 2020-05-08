@@ -45,6 +45,14 @@ public class ClienteMbean implements Serializable {
        listaClientes = clienteSBem.pesquisar(pesquisacliente);
     }
     
+      public void botaoExcluir() {
+        clienteSBem.excluir(cliente);
+    }
+    
+    public String botaoEditar() {
+        return "cadCliente?faces-redirect=true";
+    }
+    
     public String botaoSalvar(){
        clienteSBem.salvar(cliente);
        cliente = new Cliente();
