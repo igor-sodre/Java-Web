@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidade;
 
 import java.io.Serializable;
@@ -12,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,14 +16,14 @@ import javax.persistence.Table;
  * @author Igor Sodré
  */
 @Entity
-@Table(name = "cliente", schema = "autocar")
+@Table(name = "marcas", schema = "autocar")
 @NamedQueries({
     @NamedQuery(
-            name = "Cliente.findByNome",
-            query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome"
+            name = "Marcas.findByNome",
+            query = "SELECT m FROM Marcas m WHERE m.nome LIKE :nome"
     )
 })
-public class Cliente implements Serializable {
+public class Marcas implements Serializable {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -41,11 +34,6 @@ public class Cliente implements Serializable {
     private String Telefone;
     @Column(name = "email", length = 30)
     private String Email;
-    @Column(name = "cpf", length = 11)
-    private String CPF;
-    @ManyToOne
-    @JoinColumn(name = "cidade_id")
-    private Cidade cidade;
 
     public Long getId() {
         return id;
@@ -64,10 +52,6 @@ public class Cliente implements Serializable {
     }
 
     
-    
-
-   
-
     public String getTelefone() {
         return Telefone;
     }
@@ -84,23 +68,6 @@ public class Cliente implements Serializable {
         this.Email = Email;
     }
 
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }
-    
-    
 
     @Override
     public int hashCode() {
@@ -120,13 +87,11 @@ public class Cliente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Marcas other = (Marcas) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-    
-    
     
 }

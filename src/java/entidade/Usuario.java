@@ -12,40 +12,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
  *
- * @author Igor Sodré
+ * @author igor
  */
 @Entity
-@Table(name = "cliente", schema = "autocar")
+@Table(name = "usuario", schema = "autocar")
 @NamedQueries({
     @NamedQuery(
-            name = "Cliente.findByNome",
-            query = "SELECT c FROM Cliente c WHERE c.nome LIKE :nome"
+            name = "Usuario.findByNome",
+            query = "SELECT u FROM Usuario u WHERE u.nome LIKE :nome"
+    ),
+    @NamedQuery(
+            name = "Usuario.logar",
+            query = "SELECT u FROM Usuario u WHERE u.userName = :userName AND u.senha = :senha"
+    ),
+    @NamedQuery(
+            name = "Usuario.findByUserName",
+            query = "SELECT u FROM Usuario u WHERE u.userName = :userName"
     )
 })
-public class Cliente implements Serializable {
+public class Usuario implements Serializable {
     
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome", length = 200, nullable = false)
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
-    @Column(name = "telefone", length = 11)
-    private String Telefone;
-    @Column(name = "email", length = 30)
-    private String Email;
-    @Column(name = "cpf", length = 11)
-    private String CPF;
-    @ManyToOne
-    @JoinColumn(name = "cidade_id")
-    private Cidade cidade;
+    @Column(name = "email", length = 50)
+    private String email;
+    @Column(name = "user_name", length = 10, nullable = false, unique = true)
+    private String userName;
+    @Column(name = "senha", length = 10, nullable = false)
+    private String senha;
+
+    public Usuario() {
+    }
 
     public Long getId() {
         return id;
@@ -60,52 +66,38 @@ public class Cliente implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    
-    
-
-   
-
-    public String getTelefone() {
-        return Telefone;
-    }
-
-    public void setTelefone(String Telefone) {
-        this.Telefone = Telefone;
+        this.nome = nome.toUpperCase();
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email.toLowerCase();
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
     
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {        
+        this.senha = senha;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -120,13 +112,12 @@ public class Cliente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Usuario other = (Usuario) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-    
-    
+
     
 }

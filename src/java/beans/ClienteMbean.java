@@ -1,14 +1,18 @@
 package beans;
 
+import converter.CidadeConverter;
+import entidade.Cidade;
 import entidade.Cliente;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import sessionbean.CidadeSBean;
 import sessionbean.ClienteSBean;
 import uteis.UnidadeMedida;
 
@@ -22,11 +26,15 @@ public class ClienteMbean implements Serializable {
     
     private Cliente cliente;
     private String valorPesquisar;
+    private List<Cidade> listaCidade;
     private List<Cliente> listaClientes;
     private List<UnidadeMedida> listaUnidadeMedida;
 
     @EJB
-    private ClienteSBean clienteSBem; 
+    private ClienteSBean clienteSBem;
+    @EJB
+    private CidadeSBean cidadeSBean;
+    private CidadeConverter cidadeConverter;
     
     public ClienteMbean() {
         
@@ -41,27 +49,53 @@ public class ClienteMbean implements Serializable {
     
     
     public void botaoPesquisar(){
-       listaClientes = clienteSBem.pesquisar(valorPesquisar);
+      try {
+            /*
+            Ontem na aula não estava mostrando por que não tinha passado o resultado da
+            pesquisa para a listaCliente
+             */
+            this.listaClientes = clienteSBem.pesquisar(valorPesquisar);
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao Pesquisar", ex.getMessage()));
+        }
     }
     
-      public void botaoExcluir() {
+    private void carregarListaCidade() {
+        this.listaCidade = cidadeSBean.pesquisar("");
+        this.cidadeConverter = new CidadeConverter();
+        this.cidadeConverter.setCidadeSBean(cidadeSBean);
+    }
+    
+      public void botaoExcluir() throws Exception {
         clienteSBem.excluir(cliente);
         listaClientes.remove(this.cliente);
     }
     
       public String botaoNovo() {
-          this.cliente = new Cliente();
-        return "cadCliente?faces-redirect=true";
+        carregarListaCidade();
+        cliente = new Cliente();
+        return "cadCliente";
     }
       
     public String botaoEditar() {
-        return "cadCliente?faces-redirect=true";
+        carregarListaCidade();
+        return "cadCliente";
     }
     
     public String botaoSalvar(){
-       clienteSBem.salvar(cliente);
-       cliente = new Cliente();
-       return "consCliente?faces-redirect=true";
+   try {
+            clienteSBem.salvar(cliente);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Sucesso", "Cliente salvo com sucesso"));
+            return "consCliente";
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Erro Salvar", "Error ao salvar cliente. " + ex.getMessage()));
+        }
+        return null;
     }
 
     public String getValorPesquisar() {
@@ -96,6 +130,38 @@ public class ClienteMbean implements Serializable {
 
     public void setListaUnidadeMedida(List<UnidadeMedida> listaUnidadeMedida) {
         this.listaUnidadeMedida = listaUnidadeMedida;
+    }
+
+    public List<Cidade> getListaCidade() {
+        return listaCidade;
+    }
+
+    public void setListaCidade(List<Cidade> listaCidade) {
+        this.listaCidade = listaCidade;
+    }
+
+    public ClienteSBean getClienteSBem() {
+        return clienteSBem;
+    }
+
+    public void setClienteSBem(ClienteSBean clienteSBem) {
+        this.clienteSBem = clienteSBem;
+    }
+
+    public CidadeSBean getCidadeSBean() {
+        return cidadeSBean;
+    }
+
+    public void setCidadeSBean(CidadeSBean cidadeSBean) {
+        this.cidadeSBean = cidadeSBean;
+    }
+
+    public CidadeConverter getCidadeConverter() {
+        return cidadeConverter;
+    }
+
+    public void setCidadeConverter(CidadeConverter cidadeConverter) {
+        this.cidadeConverter = cidadeConverter;
     }
 
     

@@ -18,6 +18,11 @@
         <h:inputText id="iTxtEmail" size="10" value="#{clienteMbean.cliente.email}"/>
         CPF
         <h:inputText id="iTxtCPF" size="10" value="#{clienteMbean.cliente.CPF}"/>
+        Cidade
+        <h:selectOneMenu id="sMnCidade" value="#{clienteMbean.cliente.cidade}" converter="#{clienteMbean.cidadeConverter}">                     
+            <f:selectItems value="#{clienteMbean.listaCidade}" var="cidade"
+                           itemValue="#{cidade}" itemLabel="#{cidade.nome}"/>
+                </h:selectOneMenu>
         </h:panelGrid>
             <h:commandButton value="Salvar" action="#{clienteMbean.botaoSalvar()}"/>
         </h:form>

@@ -1,0 +1,54 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+           <h:form>
+            <h1>Pesquisar Marcas</h1>
+            <h:panelGrid>
+                <h:commandButton value="Novo" action="#{MarcasMbean.botaoNovo()}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                Marcas <h:inputText size="20" value="#{MarcasMbean.valorPesquisar}"/>
+                <h:commandButton value="Pesquisar" action="#{MarcasMbean.botaoPesquisar()}"/>
+            </h:panelGrid>
+            <h:panelGrid>
+                <h:dataTable value="#{MarcasMbean.listaMarcas}" var="marcas"
+                             styleClass="tabela" 
+                             headerClass="cabesario"
+                             columnClasses="tabelacolunas, tabela250px,  tabela150px, tabelaacoes"
+                             rowClasses="tabelalinha1, tabelalinha2">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{marcas.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nome</f:facet>
+                        #{marcas.nome}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Telefone</f:facet>
+                        #{marcas.telefone}
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{marcas.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ações</f:facet>
+                        <h:commandButton value="Editar" action="#{MarcasMbean.botaoEditar()}">
+                            <f:setPropertyActionListener  value="#{marcas}" target="#{MarcasMbean.marcas}" />
+                        </h:commandButton>
+                        <h:commandButton value="Apagar" action="#{MarcasMbean.botaoExcluir()}">
+                            <f:setPropertyActionListener  value="#{marcas}" target="#{MarcasMbean.marcas}" />
+                        </h:commandButton>
+                    </h:column> 
+                </h:dataTable>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

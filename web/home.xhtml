@@ -3,9 +3,13 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./Template.xhtml">
+    
 
     <ui:define name="content">
-        <center>Bem Vindo</center>
+        <div id="dvHome">
+            <h1>#{homeMBean.usuarioLogado.nome}, Bem vindo</h1>
+            Esperando o Conteudo
+        </div>
     </ui:define>
 
 </ui:composition>

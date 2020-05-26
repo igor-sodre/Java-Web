@@ -8,6 +8,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="/css/default.css"/>
         <h:outputStylesheet name="/css/cssLayout.css"/>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />	
+        <script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css" type="text/css" />
+        <link rel="stylesheet"	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css" type="text/css" />
+        <h:outputScript  name="/js/script.js"/>
+        
         <title>Auto Car Locadora </title>
     </h:head>
 
@@ -16,7 +23,7 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                Auto Car
+                <ui:include src="cabecalho.xhtml"/>  
             </ui:insert>
         </div>
         <div>
@@ -28,6 +35,11 @@
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <ui:include src="rodape.xhtml"/>                            
+            </ui:insert>
         </div>
     </h:body>
 
